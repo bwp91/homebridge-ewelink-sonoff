@@ -19,7 +19,7 @@
          "username":{
             "type":"string",
             "title":"Username",
-            "description":"The phone number or email address linked to your eWeLink account."
+            "description":"The phone number or email address linked to your eWeLink account. If you use a phone number please enter the country code (with the +), for example +8613185260282."
          },
          "password":{
             "type":"string",
