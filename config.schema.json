@@ -94,6 +94,12 @@
             "default":"20",
             "maximum":999
          },
+         "hideZBLDPress":{
+            "title":"Hide Double/Long Press",
+            "type":"boolean",
+            "description":"If enabled, double and long press options will be hidden for the ZigBee button.",
+            "default":false
+         },
          "groups":{
             "type":"array",
             "title":"Custom Groups",
@@ -104,7 +110,6 @@
                   "type":{
                      "type":"string",
                      "title":"Type",
-                     "required":true,
                      "default":"null",
                      "description":"A description of this group.",
                      "oneOf":[
@@ -125,7 +130,6 @@
                   "deviceId":{
                      "type":"string",
                      "title":"Device ID",
-                     "required":true,
                      "description":"Device ID from your eWeLink app (ten digits normally in the format 1000******)."
                   },
                   "setup":{
@@ -133,7 +137,6 @@
                      "title":"Device Setup",
                      "default":"null",
                      "description":"The device setup.",
-                     "required":true,
                      "oneOf":[
                         {
                            "title":"One Switch - for up and down",
@@ -152,14 +155,12 @@
                   "operationTime":{
                      "type":"number",
                      "title":"Operation Time",
-                     "required":true,
                      "description":"Total time in deciseconds to fully open/close the blind/door. Count the time in seconds and multiply by 10, for example 100 for 10 seconds or 75 for 7.5 seconds.",
                      "default":100
                   },
                   "inched":{
                      "title":"Device Inching",
                      "type":"boolean",
-                     "required":true,
                      "description":"If device inching is already setup in your eWeLink account then set this to true. Otherwise this plugin will send an 'off' command after half a second to mimic the inching behaviour.",
                      "default":true
                   },
@@ -181,7 +182,6 @@
                   "deviceId":{
                      "type":"string",
                      "title":"RF Bridge Device ID",
-                     "required":true,
                      "description":"Device ID of your RF Bridge from your eWeLink app (10 digits normally in the format 1000******)."
                   },
                   "fullDeviceId":{
@@ -194,8 +194,13 @@
                      "title":"Sensor Type",
                      "default":"motion",
                      "description":"Select the type of sensor you would like to expose this as in Homebridge.",
-                     "required":true,
                      "oneOf":[
+                        {
+                           "title":"Button",
+                           "enum":[
+                              "button"
+                           ]
+                        },
                         {
                            "title":"Motion",
                            "enum":[
@@ -272,7 +277,8 @@
             "hideFromHB",
             "sensorTimeLength",
             "sensorTimeDifference",
-            "valveTimeLength"
+            "valveTimeLength",
+            "hideZBLDPress"
          ]
       },
       {
@@ -297,9 +303,9 @@
       },
       {
          "key":"bridgeSensors",
-         "title":"RF Bridge Sensors",
+         "title":"RF Bridge Devices",
          "expandable":true,
-         "add":"Add Another Sensor",
+         "add":"Add Another Device",
          "type":"array",
          "items":[
             {
